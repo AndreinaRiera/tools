@@ -1,0 +1,42 @@
+/* ___ Tools ___ */
+        NodeList.prototype.setAttr = function (attr, value) {
+            for (var i = 0; i < this.length; i++) {
+                this[i].setAttribute(attr, value);
+            }
+
+            return this;
+        };
+
+        NodeList.prototype.setCSS = function (attr, value) {
+            for (var i = 0; i < this.length; i++) {
+                this[i].style[attr] = value;
+            }
+
+            return this;
+        };
+
+        Element.prototype.child = function (name) {
+            var element_child = this.querySelector(name);
+
+            if (element_child) {
+                return element_child;
+            }
+
+            return document.createElement(null);
+        }
+
+
+        Element.prototype.getCSS = function (name_property, int = "") {
+            var styles = this.currentStyle || window.getComputedStyle(this);
+            return (int ? parseInt(styles[name_property]) : styles[name_property]);
+        }
+
+        Element.prototype.removeClass = function (name_class) {
+            this.classList.remove(name_class);
+            return this;
+        }
+
+        Element.prototype.addClass = function (name_class) {
+            this.classList.add(name_class);
+            return this;
+        }
